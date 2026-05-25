@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>WASIAT4D2. Lucky Card Games</title>
+        <link rel="stylesheet" href="styles.css">
+        <!--
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                min-height: 100vh;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 480px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Banner */
+            .banner-wrap {
+                margin: 15px 0;
+                width: 90%;
+                border-radius: 30px;
+                overflow: hidden;
+            }
+
+            .banner-wrap img {
+                width: 100%;
+                display: block;
+            }
+
+            /* Main */
+            .main {
+                width: 90%;
+                background: #9d9d9d;
+                border-radius: 25px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 15px;
+                margin-top: 15px;
+            }
+
+            /* Konfirmasi Akun */
+            .two-btn-wrapper {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .photo-btn {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .photo-btn p {
+                font-weight: 600;
+            }
+
+            .pbtn {
+                width: 40%;
+                line-height: 0;
+            }
+
+            .pbtn img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* Pop Up Menu */
+            .pop-up {
+                visibility: hidden;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                background-color: rgba(0,0,0,0.6);
+                overflow: auto;
+            }
+
+            #popContent {
+                width: 80%;
+                max-width: 450px;
+                margin: 40% auto;
+                background: rgba(255, 255, 255);
+                padding: 15px 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                border-radius: 30px;
+                box-shadow: 0 3px 10px black;
+            }
+
+            /* Render Input */
+            input[type=text] {
+                padding: 10px 15px;
+                border-radius: 15px;
+                margin-top: 8px;
+                border: none;
+                font-weight: 600;
+                background: #eee78abb;
+                box-shadow: 0 1px 2px black;
+            }
+
+            button {
+                padding: 10px 15px;
+                border-radius: 20px;
+                border: none;
+                color: white;
+                font-weight: 600;
+                box-shadow: 0 1px 2px black;
+                margin-top: 8px;
+            }
+
+            .back-btn {
+                background: #ff3030;
+            }
+
+            .confirm-btn {
+                background: #30962c;
+            }
+            </style> -->
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="banner-wrap">
+                <img src="https://i.postimg.cc/4dJQCxZs/Promogamedice.jpg" alt="Promo Game Lucky Card">
+            </div>
+            
+            <h1>Selamat Datang Di WASIAT4D2</h1>
+
+            <div class="main" id="main">
+                <h2>Sudah punya akun?</h2>
+                <div class="two-btn-wrapper">
+                    <div class="photo-btn pbtn" id="photo-btn-1">
+                        <img src="https://i.postimg.cc/DfbWWRr2/tombolsudah.png" alt="sudah punya akun">
+                        <p>SUDAH PUNYA</p>
+                    </div>
+
+                    <div class="photo-btn pbtn" id="photo-btn-2">
+                        <img src="https://i.postimg.cc/T2WyyBVn/tombolbelum.png" alt="belum punya akun">
+                        <p>BELUM PUNYA</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pop-up" id="popUp">
+                <div id="popContent"></div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        const sudah = document.getElementById("photo-btn-1");
+        const belum = document.getElementById("photo-btn-2");
+        const popUp = document.getElementById("popUp");
+        const popUpContent = document.getElementById("popContent");
+        const mainContent = document.getElementById("main");
+        let STAGE = "IDLE";
+
+        function renderDetails() {
+            return `
+                <h3>Cara Bermain & Hadiah</h3>
+                <ol>
+                    <li>Pastikan sudah punya akun di WASIAT4D2</li>
+                    <li>Masukkan username akun WASIAT4D2</li>
+                    <li>Klik tombol ACAK untuk mengacak dadu</li>
+                    <li>Klik tombol STOP untuk berhenti mengacak</li>
+                    <li>ScreenShot dan claim hadiahnya!</li>    
+                </ol>
+
+                <table>
+                    <tr>
+                        <th colspan="3">Hadiah<th>    
+                    </tr>
+                    <tr>
+                        <td>Hadiah 1</td>
+                        <td>Bonus Deposit 10%</td>
+                        <td>Jumlah angka dadu = 1 - 6</td>
+                    </tr>
+                    <tr>
+                        <td>Hadiah 2</td>
+                        <td>Bonus NEW MEMBER 20%</td>
+                        <td>Jumlah angka dadu = 7 - 12</td>
+                    </tr>
+                    <tr>
+                        <td>Hadiah 3</td>
+                        <td>Saldo Gratis Rp 200RB</td>
+                        <td>Jumlah angka dadu = 13 - 18</td>
+                    </tr>
+                </table>
+                <button type="button" value="x" class="back-btn x-btn">Tutup</button>
+            `
+        }
+
+        function renderInputUser() {
+            return `
+                <h3>Silahkan Masukkan Username</h3>
+                <input type="text" id="username" placeholder="Masukkan Username Di sini" required>
+                <div class="two-btn-wrapper">
+                    <button type="button" class="back-btn" value="kembali">KEMBALI</button>
+                    <button type="button" class="confirm-btn" value="konfirmasi">KONFIRMASI</button>
+                </div>
+            `
+        }
+
+        function renderDaftar() {
+            return `
+                <h3>Silahkan Daftarkan Akun Terlebih Dahulu</h3>
+                <div class="two-btn-wrapper">
+                    <button type="button" class="back-btn" value="kembali">TUTUP</button>
+                    <button type="button" class="confirm-btn" value="daftar">DAFTAR</button>
+                </div>
+            `
+        }
+
+        function renderGame() {
+            return`
+                <h2>Silahkan Acak Dadu</h2>
+
+            `
+        }
+
+        function render() {
+            if(STAGE === "INPUTUSER") {
+                popUpContent.innerHTML = renderInputUser();
+            }
+
+            if(STAGE === "DAFTAR") {
+                popUpContent.innerHTML = renderDaftar();
+            }
+
+            if(STAGE === "STARTGAME") {
+                main.innerHTML = renderGame();
+            }
+        }
+
+        sudah.addEventListener("click", (e) => {
+            e.preventDefault();
+            popUp.style.visibility = "visible";
+            STAGE = "INPUTUSER";
+            render();
+        });
+
+        belum.addEventListener("click", (e) => {
+            e.preventDefault();
+            popUp.style.visibility = "visible";
+            STAGE = "DAFTAR";
+            render();
+        });
+
+        const detailPromo = document.querySelector(".banner-wrap");
+
+        detailPromo.addEventListener("click", (e) => {
+            e.preventDefault();
+            popUp.style.visibility = "visible";
+            popUpContent.innerHTML = renderDetails();
+
+        });
+
+        popUpContent.addEventListener("click", (e) => {
+            if (e.target.classList.contains("back-btn") && e.target.value === "kembali") {
+                popUp.style.visibility = "hidden";
+                STAGE = "IDLE";
+            }
+
+            if (e.target.classList.contains("back-btn") && e.target.value === "x") {
+                popUp.style.visibility = "hidden";
+            }
+
+            if (e.target.classList.contains("confirm-btn") && e.target.value === "daftar") {
+                window.open("https://wasiat4d2.info/register", "_blank", "noopener,noreferrer");
+                popUp.style.visibility = "hidden";
+                STAGE = "IDLE";
+            }
+
+            if (e.target.classList.contains("confirm-btn") && e.target.value === "konfirmasi") {
+                popUp.style.visibility = "hidden";
+                STAGE = "STARTGAME";
+                render();
+            }
+        });
+    </script>
+</html>
