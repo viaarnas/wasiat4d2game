@@ -17,21 +17,25 @@
     }
 
     h1 {
-        font-size: 1.8rem;
-        margin-top: 10px;
+        font-size: 1.9rem;
+        margin-top: 12px;
         color: #1e3a8a;
         text-align: center;
-        font-weight: 700;
+        font-weight: 800;
+        line-height: 1.3;
     }
 
     h2 {
         color: #1e3a8a;
-        margin-bottom: 15px;
+        margin-bottom: 16px;
+        text-align: center;
+        font-size: 1.2rem;
     }
 
     h3 {
         color: #1e3a8a;
         margin-bottom: 15px;
+        font-size: 1.1rem;
     }
 
     .container {
@@ -43,20 +47,33 @@
         align-items: center;
     }
 
+    /* Logo */
+    .logo {
+        width: 60%;
+        margin-top: -20px;
+    }
+
+    .logo img {
+        width: 100%;
+        display: block;
+    }
+
     /* Banner */
     .banner-wrap {
         margin: 15px 0;
         width: 92%;
-        border-radius: 28px;
+        border-radius: 24px;
         overflow: hidden;
         box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         transition: 0.3s ease;
         cursor: pointer;
-        border: 4px solid #ffffff;
+        border: 3px solid #ffffff;
+        background: white;
+        position: relative;
     }
 
     .banner-wrap:hover {
-        transform: translateY(-4px);
+        transform: translateY(-3px);
     }
 
     .banner-wrap img {
@@ -64,11 +81,18 @@
         display: block;
     }
 
+    .banner-wrap p {
+        line-height: 0.1rem;
+        text-align: center;
+        font-weight: 800;
+        color: #1e3a8a;
+    }
+
     /* Main Card */
     .main {
         width: 92%;
         background: #ffffff;
-        border-radius: 28px;
+        border-radius: 26px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -84,16 +108,16 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        align-items: center;
-        gap: 18px;
+        align-items: stretch;
+        gap: 16px;
         margin-top: 20px;
     }
 
     .photo-btn {
         width: 45%;
         background: #f9fafb;
-        border-radius: 22px;
-        padding: 15px 10px;
+        border-radius: 20px;
+        padding: 16px 12px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -102,7 +126,7 @@
         cursor: pointer;
         transition: 0.25s ease;
         border: 2px solid #e5e7eb;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     .photo-btn:hover {
@@ -115,10 +139,11 @@
         font-weight: 700;
         color: #374151;
         font-size: 0.95rem;
+        text-align: center;
     }
 
     .pbtn img {
-        width: 85%;
+        width: 80%;
         height: auto;
         display: block;
     }
@@ -148,19 +173,19 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        border-radius: 28px;
+        border-radius: 24px;
         box-shadow: 0 15px 40px rgba(0,0,0,0.18);
         border: 2px solid #e5e7eb;
-        animation: popupFade 0.3s ease;
+        animation: popupFade 0.25s ease;
     }
 
     @keyframes popupFade {
         from {
-            transform: scale(0.9);
+            transform: translateY(10px);
             opacity: 0;
         }
         to {
-            transform: scale(1);
+            transform: translateY(0);
             opacity: 1;
         }
     }
@@ -169,7 +194,7 @@
     input[type=text] {
         width: 100%;
         padding: 14px 16px;
-        border-radius: 16px;
+        border-radius: 14px;
         margin-top: 12px;
         border: 2px solid #d1d5db;
         font-weight: 600;
@@ -182,13 +207,25 @@
     input[type=text]:focus {
         border-color: #3b82f6;
         background: #ffffff;
-        box-shadow: 0 0 0 4px rgba(59,130,246,0.15);
+        box-shadow: 0 0 0 4px rgba(59,130,246,0.12);
+    }
+
+    .shake {
+        animation: shake 0.3s ease;
+    }
+
+    .invalid {
+        border: 2px solid red !important;
+    }
+
+    .invalid::placeholder {
+        color: red;
     }
 
     /* Button */
     button {
         padding: 12px 20px;
-        border-radius: 18px;
+        border-radius: 14px;
         border: none;
         color: white;
         font-weight: 700;
@@ -220,14 +257,26 @@
         box-shadow: 0 6px 15px rgba(107,114,128,0.35);
     }
 
+    #play {
+        background: linear-gradient(135deg, #facc15, #f59e0b);
+        color: #1f2937 !important;
+        font-size: 1rem;
+        min-width: 140px;
+        margin-top: 20px;
+    }
+
+    #play:hover {
+        box-shadow: 0 6px 15px rgba(250,204,21,0.35);
+    }
+
     /* Table */
     table {
         width: 100%;
         margin-top: 18px;
         border-collapse: collapse;
         overflow: hidden;
-        border-radius: 16px;
-        font-size: 0.9rem;
+        border-radius: 14px;
+        font-size: 0.88rem;
     }
 
     th {
@@ -240,6 +289,7 @@
         padding: 10px;
         background: #f9fafb;
         border-bottom: 1px solid #e5e7eb;
+        text-align: center;
     }
 
     tr:nth-child(even) td {
@@ -253,11 +303,146 @@
         line-height: 1.7;
     }
 
+    /* Dadu */
+    .dice-container {
+        width: 100%;
+        margin: 10px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .dice {
+        width: 90px;
+        height: 90px;
+        background: white;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 65px;
+        border: 2px solid #dbeafe;
+        box-shadow: 0 6px 15px rgba(37,99,235,0.08);
+        transition: 0.2s ease;
+    }
+
+    .dice:hover {
+        transform: translateY(-2px);
+    }
+
+    .total {
+        margin-top: 16px;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1d4ed8;
+        background: #eff6ff;
+        padding: 10px 16px;
+        border-radius: 14px;
+    }
+
+    /* Played */
+    .played-card{
+        width:100%;
+        text-align:center;
+    }
+
+    .played-header{
+        background:#e8f5e9;
+        color:#2e7d32;
+        padding:12px;
+        border-radius:12px;
+        font-weight:700;
+        margin-bottom:15px;
+    }
+
+    .user-info{
+        margin-bottom:18px;
+        font-size:15px;
+    }
+
+    .user-info span{
+        color:#2563eb;
+        font-weight:700;
+    }
+
+    .played-dice{
+        margin:20px 0;
+    }
+
+    .result-box{
+        background:#f8fafc;
+        border:1px solid #dbeafe;
+        border-radius:16px;
+        padding:15px;
+        margin-bottom:20px;
+    }
+
+    .result-title{
+        font-size:14px;
+        color:#64748b;
+        margin-bottom:10px;
+        font-weight:700;
+    }
+
+    .result-total{
+        font-size:18px;
+        font-weight:700;
+        color:#1e3a8a;
+        margin-bottom:10px;
+    }
+
+    .result-hadiah{
+        font-size:16px;
+        color:#059669;
+        font-weight:700;
+    }
+
+    .claim-btn{
+        width:100%;
+        max-width:250px;
+    }
+    
+    /* Confetti */
+    .confetti {
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+        pointer-events: none;
+        animation: shoot 3s linear forwards;
+    }
+
+    /* Keyframes */
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        20% { transform: translateX(-5px); }
+        40% { transform: translateX(5px); }
+        60% { transform: translateX(-5px); }
+        80% { transform: translateX(5px); }
+        100% { transform: translateX(0); }
+    }
+
+    @keyframes shoot {
+        0% {
+            transform: translateX(0) translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(calc(50vw * var(--dir))) translateY(100vh) rotate(720deg);
+            opacity: 0;
+        }
+    }
+
     /* Mobile */
     @media(max-width: 480px) {
         h1 {
-            font-size: 1.5rem;
+            font-size: 1.55rem;
             padding: 0 15px;
+        }
+
+        h2 {
+            font-size: 1.05rem;
         }
 
         .main {
@@ -266,11 +451,31 @@
 
         .photo-btn {
             width: 48%;
+            padding: 14px 10px;
+        }
+
+        .photo-btn p {
+            font-size: 0.82rem;
+        }
+
+        .dice {
+            width: 75px;
+            height: 75px;
+            font-size: 52px;
         }
 
         button {
             min-width: 100px;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
+        }
+
+        #popContent {
+            margin: 25% auto;
+            padding: 20px;
+        }
+
+        table {
+            font-size: 0.8rem;
         }
     }
 </style>
